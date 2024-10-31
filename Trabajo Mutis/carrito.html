@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="estilos.css">
+    <script src="script.js" defer></script> <!-- Asegúrate de incluir el script -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+        }
+        main {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #333;
+        }
+        #listaProductos {
+            margin-top: 20px;
+        }
+        .producto-carrito {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .producto-carrito h3 {
+            margin: 0;
+        }
+        #total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tu Carrito de Compras</h1>
+    </header>
+
+    <main>
+        <!-- Formulario para la información del comprador -->
+        <h2>Información del Comprador</h2>
+        <form id="formComprador" onsubmit="return validarFormulario()">
+            <label for="nombreComprador">Nombre:</label>
+            <input type="text" id="nombreComprador" required placeholder="Ingresa tu nombre">
+
+            <label for="direccionComprador">Dirección:</label>
+            <input type="text" id="direccionComprador" required placeholder="Ingresa tu dirección">
+
+            <label for="emailComprador">Correo Electrónico:</label>
+            <input type="email" id="emailComprador" required placeholder="Ingresa tu correo electrónico">
+
+            <button type="submit">Finalizar Compra</button>
+        </form>
+
+        <div id="listaProductos"></div> <!-- Aquí se mostrarán los productos -->
+        <p id="total">Total: $0</p> <!-- Aquí se mostrará el total -->
+        <button id="btnVolver" onclick="location.href='index.html'">Volver al Inicio</button>
+    </main>
+
+    <script>
+        // Obtener los productos del carrito desde localStorage
+        function cargarCarrito() {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            const listaProductos = document.getElementById('listaProductos');
+            const formComprador = document.getElementById('formComprador');
+            listaProductos.innerHTML = ''; // Limpiar lista actual
+
+            if (carrito.length === 0) {
+                listaProductos.innerHTML = '<p>No hay productos en el carrito.</p>';
+                document.getElementById('total').innerText = 'Total: $0';
+                formComprador.style.display = 'none'; // Ocultar el formulario si no hay productos
+                return;
+            }
+
+            let total = 0;
+
+            carrito.forEach((producto, index) => {
+                const productoDiv = document.createElement('div');
+                productoDiv.className = 'producto-carrito';
+                productoDiv.innerHTML = `
+                    <h3>${producto.nombre}</h3>
+                    <p>Precio: $${producto.precio}</p>
+                    <button onclick="eliminarDelCarrito(${index})">Eliminar</button>
+                `;
+                listaProductos.appendChild(productoDiv);
+                total += producto.precio;
+            });
+
+            document.getElementById('total').innerText = 'Total: $' + total;
+            formComprador.style.display = 'block'; // Mostrar el formulario si hay productos
+        }
+
+        // Función para eliminar un producto del carrito
+        function eliminarDelCarrito(index) {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            carrito.splice(index, 1); // Eliminar el producto
+            localStorage.setItem('carrito', JSON.stringify(carrito)); // Actualizar el carrito
+            cargarCarrito(); // Recargar los productos en el carrito
+        }
+
+        // Función para validar el formulario antes de finalizar la compra
+        function validarFormulario() {
+            const nombre = document.getElementById('nombreComprador').value;
+            const direccion = document.getElementById('direccionComprador').value;
+            const email = document.getElementById('emailComprador').value;
+
+            if (!nombre || !direccion || !email) {
+                alert('Por favor, completa todos los campos.');
+                return false; // Previene el envío del formulario
+            }
+
+            finalizarCompra(nombre, direccion, email);
+            return false; // Evitar recarga de página al enviar el formulario
+        }
+
+        // Función para finalizar la compra
+        function finalizarCompra(nombre, direccion, email) {
+            const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+            if (carrito.length === 0) {
+                alert('No hay productos en el carrito para finalizar la compra.');
+                return;
+            }
+
+            // Aquí podrías enviar la información del comprador a tu servidor o procesarla
+            alert(`Gracias ${nombre} por tu compra. Los productos se enviarán a ${direccion}. Un correo de confirmación será enviado a ${email}.`);
+            
+            // Limpiar el carrito después de la compra
+            localStorage.removeItem('carrito');
+            cargarCarrito(); // Recargar el carrito
+        }
+
+        // Cargar el carrito al iniciar la página
+        window.onload = cargarCarrito;
+    </script>
+</body>
+</html>
