@@ -1,0 +1,263 @@
+/* Estilo General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Encabezado */
+header {
+    text-align: center;
+    padding: 2rem;
+
+    color: #fafafa;
+    width: 100%;
+    position: relative; 
+}
+
+/* Botón del carrito */
+.boton-carrito {
+    background-color: #4CAF50; 
+    color: white; 
+    padding: 10px 20px; 
+    font-size: 18px; 
+    border-radius: 20px; 
+    float: right;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-carrito:hover {
+    background-color: #4CAF50; /* Cambio de color al pasar el mouse */
+    
+}
+
+/* Sección de información */
+.informacion-empresa {
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.informacion-empresa h2 {
+    font-size: 2rem;
+    color: #000000; /* Color más vibrante */
+    margin-bottom: 1rem;
+}
+
+.informacion-empresa p {
+    font-size: 1rem;
+    color: #555;
+}
+
+/* Sección de productos */
+.productos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1000px;
+}
+
+.producto {
+    width: 200px;
+    text-align: center;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px; /* Esquinas más redondeadas */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s; /* Transiciones suaves */
+}
+
+.producto:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+}
+
+.producto img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Esquinas más redondeadas */
+    margin-bottom: 0.5rem;
+}
+
+/* Estilo del modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+.producto-carrito {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+.logo {
+    width: 90px;
+    border-radius: 30%;
+}
+
+/*BOTONES*/
+.botones-container {
+    display: flex; /* Utiliza flexbox para alinear los botones */
+    justify-content: center; /* Centra los botones horizontalmente */
+    margin-top: 20px; /* Espacio superior para separar de otros elementos */
+}
+
+button {
+    margin: 0 10px; /* Espacio horizontal entre botones */
+    padding: 10px 20px; /* Ajusta el relleno para que se vean más grandes */
+    font-size: 16px; /* Tamaño de fuente para los botones */
+}
+
+
+
+
+
+
+
+
+/* estilos.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.carrito {
+    text-align: right;
+    margin-top: -20px;
+    margin-right: 20px;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+}
+
+main img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+main p {
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.botones-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #333;
+}
+
+
+/* estilos.css */
+.imagen-producto {
+    width: 600px; /* Cambia este valor según el tamaño que desees */
+    height: auto; /* Mantiene la proporción de la imagen */
+    margin-bottom: 15px;
+}
